@@ -1,0 +1,26 @@
+{
+  "name": "beachrnr-booking-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbgomez/beachRNR-booking-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbgomez/beachRNR-booking-service/issues"
+  },
+  "homepage": "https://github.com/jbgomez/beachRNR-booking-service#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "mysql": "^2.16.0",
+    "sequelize": "^4.38.0"
+  }
+}
