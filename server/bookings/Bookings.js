@@ -17,4 +17,18 @@ const Bookings = sequelize.define('bookings', {
 
 Bookings.sync();
 
+const BookingDates = sequelize.define('booking_dates', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  }
+});
+
+BookingDates.sync();
+
+Bookings.hasMany(BookingDates);
+sequelize.sync();
+
 exports.Bookings = Bookings;
+exports.BookingDates = BookingDates;
