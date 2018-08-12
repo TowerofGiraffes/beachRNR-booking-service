@@ -1,6 +1,6 @@
-var app = require('./server.js');
-var port = process.env.PORT || 3002;
+const app = require('./server.js');
+const port = process.env.PORT || 3002;
 
-app.listen(port, function () {
-  console.log('Booking service listening on port ' + port);
+app.listen(port, () => {
+  console.log(`Booking service listening on port ${port}`);
 });
