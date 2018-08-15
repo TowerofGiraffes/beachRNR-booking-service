@@ -67,4 +67,12 @@ exports.updateBookng = (req, res) => {
 
     return res.status(400).send(errMsg);
   }
+
+  if (typeof parseInt(req.body.guests.adults) !== 'number' || parseInt(req.body.guests.adults) < 1) {
+    const errMsg = JSON.stringify({
+      errMsg: 'Number of adult guests cannot be less than 1.'
+    });
+    
+    return res.status(400).send(errMsg);
+  }
 };
