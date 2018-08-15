@@ -14,3 +14,13 @@ exports.retrieveBookedDates = (req, res) => {
     .then(result => res.status(200).send(JSON.stringify(result)))
     .catch(err => res.status(400).send(JSON.stringify(err)));
 };
+
+exports.book = (req, res) => {
+  if (!req.body) {
+    const errMsg = JSON.stringify({
+      errMsg: 'No parameters provided with request.'
+    });
+
+    return res.status(400).send(errMsg);
+  }
+};
