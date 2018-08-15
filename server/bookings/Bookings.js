@@ -15,8 +15,6 @@ const Bookings = sequelize.define('bookings', {
   infant_guests: Sequelize.INTEGER
 });
 
-Bookings.sync();
-
 const BookingDates = sequelize.define('booking_dates', {
   id: {
     type: Sequelize.INTEGER,
@@ -24,8 +22,6 @@ const BookingDates = sequelize.define('booking_dates', {
     autoIncrement: true,
   }
 });
-
-BookingDates.sync();
 
 Bookings.hasMany(BookingDates);
 sequelize.sync();
