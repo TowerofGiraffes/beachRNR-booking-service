@@ -75,4 +75,12 @@ exports.updateBookng = (req, res) => {
     
     return res.status(400).send(errMsg);
   }
+
+  const listingID = req.params.listing;
+  const bookingID = req.body.bookingID;
+  const dates = req.body.dates;
+  const guests = req.body.guests;
+
+  const nightlyPrice = 100; // TODO: make API call to inventory service for nightly price and calculate
+  const bookedPrice = nightlyPrice * (dates.length - 1) * (guests.adults + guests.children);
 };
