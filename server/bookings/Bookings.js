@@ -24,7 +24,10 @@ const BookingDates = sequelize.define('booking_dates', {
   date: Sequelize.DATE
 });
 
-Bookings.hasMany(BookingDates);
+BookingDates.belongsTo(Bookings, {
+  foreignKey: 'booking_id',
+});
+
 sequelize.sync();
 
 exports.Bookings = Bookings;
