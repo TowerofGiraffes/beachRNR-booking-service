@@ -1,6 +1,6 @@
 const { Bookings, BookingDates } = require('./Bookings');
 
-exports.retrieve = (req, res) => {
+exports.retrieveBookedDates = (req, res) => {
   const listingID = req.params.listing;
   
   BookingDates
