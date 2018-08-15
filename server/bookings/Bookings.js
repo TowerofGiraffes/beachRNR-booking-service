@@ -12,7 +12,7 @@ const Bookings = sequelize.define('bookings', {
   booked_price: Sequelize.DECIMAL,
   adult_guests: Sequelize.INTEGER,
   child_guests: Sequelize.INTEGER,
-  infant_guests: Sequelize.INTEGER,
+  infant_guests: Sequelize.INTEGER
 });
 
 Bookings.sync();
