@@ -37,7 +37,7 @@ exports.book = (req, res) => {
   const guests = req.body.guests;
 
   const nightlyPrice = 100; // TODO: make API call to inventory service for nightly price and calculate
-  const bookedPrice = nightlyPrice * (guests.adults + guests.children);
+  const bookedPrice = nightlyPrice * (dates.length - 1) * (guests.adults + guests.children);
 
   Bookings
     .create({
