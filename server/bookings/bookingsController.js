@@ -59,4 +59,12 @@ exports.book = (req, res) => {
     .catch(err => res.status(400).send(JSON.stringify(err)));
 };
 
-exports.updateBookng = (req, res) => {};
+exports.updateBookng = (req, res) => {
+  if (!req.body) {
+    const errMsg = JSON.stringify({
+      errMsg: 'No parameters provided with request.'
+    });
+
+    return res.status(400).send(errMsg);
+  }
+};
