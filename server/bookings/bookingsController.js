@@ -83,4 +83,38 @@ exports.updateBookng = (req, res) => {
 
   const nightlyPrice = 100; // TODO: make API call to inventory service for nightly price and calculate
   const bookedPrice = nightlyPrice * (dates.length - 1) * (guests.adults + guests.children);
+
+  Bookings
+    .update(
+      {
+        booked_price: bookedPrice,
+        adult_guests: guests.adults,
+        children_guests: guests.children,
+        infant_guests: guests.infants
+      },
+      {
+        where: {
+          user_id: 1, // typically, this value would be stored as a session variable/included in the API call, but for the purpose of this project, we'll leave it hardcoded as 1
+          id: bookingID
+        }
+      }
+    )
+    .then(result => {
+      BookingDates
+        .destroy({
+          where: {
+            booking_id: bookingID
+          }
+        })
+        .then(() => {
+          const bookingDates = dates.map(date => ({ booking_id: bookingID, date: date }));
+
+          BookingDates
+            .bulkCreate(bookingDates)
+            .then(result => res.status(200).send(JSON.stringify(result)))
+            .catch(err => res.status(400).send(JSON.stringify(err)));
+        })
+        .catch(err => res.status(400).send(JSON.stringify(err)));
+    })
+    .catch(err => res.status(400).send(JSON.stringify(err)));
 };
