@@ -20,7 +20,8 @@ const BookingDates = sequelize.define('booking_dates', {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  }
+  },
+  date: Sequelize.DATE
 });
 
 Bookings.hasMany(BookingDates);
