@@ -58,3 +58,5 @@ exports.book = (req, res) => {
     })
     .catch(err => res.status(400).send(JSON.stringify(err)));
 };
+
+exports.updateBookng = (req, res) => {};
