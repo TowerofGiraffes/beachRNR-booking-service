@@ -118,3 +118,34 @@ exports.updateBookng = (req, res) => {
     })
     .catch(err => res.status(400).send(JSON.stringify(err)));
 };
+
+
+exports.deleteBooking = (req, res) => {
+  if (!req.body) {
+    const errMsg = JSON.stringify({
+      errMsg: 'No parameters provided with request.'
+    });
+
+    return res.status(400).send(errMsg);
+  }
+
+  const bookingID = req.body.bookingID;
+
+  BookingDates
+    .destroy({
+      where: {
+        booking_id: bookingID
+      }
+    })
+    .then(result => {
+      Bookings
+      .destroy({
+        where: {
+          booking_id: bookingID
+        }
+      })
+      .then(result => res.status(200).send(JSON.stringify(result)))
+      .catch(err => res.status(400).send(JSON.stringify(err)));
+    })
+    .catch(err => res.status(400).send(JSON.stringify(err)));
+};

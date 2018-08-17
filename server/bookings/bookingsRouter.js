@@ -4,6 +4,7 @@ const bookingsController = require('./bookingsController');
 bookingsRouter.route('/:listing')
 .get(bookingsController.retrieveBookedDates)
 .post(bookingsController.book)
-.put(bookingsController.updateBookng);
+.put(bookingsController.updateBookng)
+.delete(bookingsController.deleteBooking);
 
 module.exports = bookingsRouter;
