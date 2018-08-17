@@ -1,5 +1,8 @@
 const { Bookings, BookingDates } = require('./Bookings');
 
+const successHandler = res => result => res.status(200).send(JSON.stringify(result));
+const errHandler = res => err => res.status(400).send(JSON.stringify(err));
+
 exports.retrieveBookedDates = (req, res) => {
   const listingID = req.params.listing;
   
@@ -11,8 +14,8 @@ exports.retrieveBookedDates = (req, res) => {
         attributes: []
       }]
     })
-    .then(result => res.status(200).send(JSON.stringify(result)))
-    .catch(err => res.status(400).send(JSON.stringify(err)));
+    .then(successHandler(res))
+    .catch(errHandler(res));
 };
 
 exports.book = (req, res) => {
@@ -53,10 +56,10 @@ exports.book = (req, res) => {
       
       BookingDates
         .bulkCreate(bookingDates)
-        .then(result => res.status(200).send(JSON.stringify(result)))
-        .catch(err => res.status(400).send(JSON.stringify(err)));
+        .then(successHandler(res))
+        .catch(errHandler(res));
     })
-    .catch(err => res.status(400).send(JSON.stringify(err)));
+    .catch(errHandler(res));
 };
 
 exports.updateBookng = (req, res) => {
@@ -111,12 +114,12 @@ exports.updateBookng = (req, res) => {
 
           BookingDates
             .bulkCreate(bookingDates)
-            .then(result => res.status(200).send(JSON.stringify(result)))
-            .catch(err => res.status(400).send(JSON.stringify(err)));
+            .then(successHandler(res))
+            .catch(errHandler(res));
         })
-        .catch(err => res.status(400).send(JSON.stringify(err)));
+        .catch(errHandler(res));
     })
-    .catch(err => res.status(400).send(JSON.stringify(err)));
+    .catch(errHandler(res));
 };
 
 
@@ -144,8 +147,8 @@ exports.deleteBooking = (req, res) => {
           booking_id: bookingID
         }
       })
-      .then(result => res.status(200).send(JSON.stringify(result)))
-      .catch(err => res.status(400).send(JSON.stringify(err)));
+      .then(successHandler(res))
+      .catch(errHandler(res));
     })
-    .catch(err => res.status(400).send(JSON.stringify(err)));
+    .catch(errHandler(res));
 };
