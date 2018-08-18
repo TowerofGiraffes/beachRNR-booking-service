@@ -1,3 +1,12 @@
 language: node_js
 node_js:
   - "8"
+deploy:
+  - provider: codedeploy
+    revision_type: github
+    access_key_id: "$ACCESSKEYID"
+    secret_access_key: "$SECRETACCESSKEY"
+    application: "Booking-Service"
+    deployment_group: "Booking-Service-Group"
+    region: "us-west-1b"
+    
