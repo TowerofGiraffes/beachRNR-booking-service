@@ -64,3 +64,15 @@ const generateBookingDataChunk = async (start, stop) => {
   })
   .catch(err => console.error('Error!', err));
 };
+
+exports.generateData = async (req, res) => {
+  res.status(200).send(JSON.stringify({result: 'Data generator initiated!'}));
+  
+  let startChunk = 0;
+  
+  for (let i = 0; i < 100; i++) {
+    const endChunk = startChunk + 2000;
+    await generateBookingDataChunk(startChunk, endChunk);
+    startChunk = endChunk;
+  }
+};
