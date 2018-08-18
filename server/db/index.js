@@ -5,7 +5,8 @@ const dbPW = process.env.DB_PW || 'bookings';
 const sequelize = new Sequelize('bookings', dbUser, dbPW, {
   dialect: 'mysql',
   host: process.env.DB_HOST || 'localhost',
-  operatorsAliases: false
+  operatorsAliases: false,
+  logging: false
 });
 
 sequelize.authenticate()
