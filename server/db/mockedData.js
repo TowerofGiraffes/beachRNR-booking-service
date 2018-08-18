@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { Bookings, BookingDates } = require('./../bookings/Bookings');
+const { Bookings, BookingDates, forceSync } = require('./../bookings/Bookings');
 
 let bookings;
 let bookedDates;
@@ -64,13 +64,22 @@ const generateBookingDataChunk = async (start, stop) => {
 };
 
 exports.generateData = async (req, res) => {
+  forceSync();
+  const chunks = req.params.chunks;
+  listingID = 2912000;
+  bookingID = 1;
+  userID = 1;
+
   res.status(200).send(JSON.stringify({result: 'Data generator initiated!'}));
   
   let startChunk = 0;
   
-  for (let i = 0; i < 100; i++) {
-    const endChunk = startChunk + 2000;
+  for (let i = 0; i < chunks; i++) {
+    const endChunk = startChunk + 1000;
     await generateBookingDataChunk(startChunk, endChunk);
     startChunk = endChunk;
+    console.log(`Processed ${endChunk} bookings!`);
   }
+
+  console.log('Done!');
 };
