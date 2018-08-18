@@ -1,20 +1,19 @@
 const moment = require('moment');
-const { Bookings, BookingDates } = require('./../bookings/Bookings');
+const { Bookings, BookingDates, forceSync } = require('./../bookings/Bookings');
 
-const bookings = [];
-const bookedDates = [];
+let bookings;
+let bookedDates;
 
 let listingID = 2912000;
 let bookingID = 1;
 let userID = 1;
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-}
+const getRandomIntInclusive = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const generateBookingDataChunk = async (start, stop) => {
+  bookings = [];
+  bookedDates = [];
+
   for (let i = start; i < stop; i++) {
     let firstCheckInDay = 1;
     let lastCheckInDay = 0;
@@ -34,10 +33,11 @@ const generateBookingDataChunk = async (start, stop) => {
         infant_guests: infantGuests
       });
 
-      firstCheckInDay += lastCheckInDay;
+      firstCheckInDay = lastCheckInDay + 1;
       lastCheckInDay += 30;
-      const checkIn = getRandomIntInclusive(firstCheckInDay , lastCheckInDay);
-      const checkOut = getRandomIntInclusive(2, 10) + checkIn;
+      let checkOut = getRandomIntInclusive(2, 10);
+      const checkIn = getRandomIntInclusive(firstCheckInDay , lastCheckInDay - checkOut);
+      checkOut += checkIn;
 
       for (let day = checkIn; day <= checkOut; day++) {
         const date = moment().add(day, 'days').format('YYYY-MM-DD H:m:s');
@@ -56,23 +56,30 @@ const generateBookingDataChunk = async (start, stop) => {
   await Bookings
   .bulkCreate(bookings)
   .then(async () => {
-    console.log('Bookings chunk complete!');
     await BookingDates
       .bulkCreate(bookedDates)
-      .then(result => console.log('Booked dates chunk complete!'))
       .catch(err => console.error('Error!', err));
   })
   .catch(err => console.error('Error!', err));
 };
 
 exports.generateData = async (req, res) => {
+  forceSync();
+  const chunks = req.params.chunks;
+  listingID = 2912000;
+  bookingID = 1;
+  userID = 1;
+
   res.status(200).send(JSON.stringify({result: 'Data generator initiated!'}));
   
   let startChunk = 0;
   
-  for (let i = 0; i < 100; i++) {
-    const endChunk = startChunk + 2000;
+  for (let i = 0; i < chunks; i++) {
+    const endChunk = startChunk + 1000;
     await generateBookingDataChunk(startChunk, endChunk);
     startChunk = endChunk;
+    console.log(`Processed ${endChunk} bookings!`);
   }
+
+  console.log('Done!');
 };

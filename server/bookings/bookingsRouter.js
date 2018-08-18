@@ -8,7 +8,7 @@ bookingsRouter.route('/api/bookings/:listing')
 .put(bookingsController.updateBookng)
 .delete(bookingsController.deleteBooking);
 
-bookingsRouter.route('/generateData')
+bookingsRouter.route('/generateData/:chunks')
 .get(generateData)
 
 module.exports = bookingsRouter;
