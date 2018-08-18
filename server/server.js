@@ -8,6 +8,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 const router = require('./bookings/bookingsRouter');
-app.use('/api/bookings', router);
+app.use('/', router);
 
 module.exports = app;
