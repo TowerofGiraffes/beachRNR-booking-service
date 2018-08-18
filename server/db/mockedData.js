@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { Bookings, BookingDates } = require('./../bookings/Bookings');
 
 const bookings = [];
 const bookedDates = [];
