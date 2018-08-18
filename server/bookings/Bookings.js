@@ -3,21 +3,21 @@ const sequelize = require('./../db');
 
 const Bookings = sequelize.define('bookings', {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
   },
-  listing_id: Sequelize.INTEGER,
-  user_id: Sequelize.INTEGER,
+  listing_id: Sequelize.INTEGER.UNSIGNED,
+  user_id: Sequelize.INTEGER.UNSIGNED,
   booked_price: Sequelize.DECIMAL,
-  adult_guests: Sequelize.INTEGER,
-  child_guests: Sequelize.INTEGER,
-  infant_guests: Sequelize.INTEGER
+  adult_guests: Sequelize.INTEGER.UNSIGNED,
+  child_guests: Sequelize.INTEGER.UNSIGNED,
+  infant_guests: Sequelize.INTEGER.UNSIGNED
 });
 
 const BookingDates = sequelize.define('booking_dates', {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
   },
