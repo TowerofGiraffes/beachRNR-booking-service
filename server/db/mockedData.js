@@ -8,11 +8,7 @@ let listingID = 2912000;
 let bookingID = 1;
 let userID = 1;
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-}
+const getRandomIntInclusive = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const generateBookingDataChunk = async (start, stop) => {
   for (let i = start; i < stop; i++) {
