@@ -13,7 +13,7 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
-const generateBookingDataChunk = (start, stop) => {
+const generateBookingDataChunk = async (start, stop) => {
   for (let i = start; i < stop; i++) {
     let firstCheckInDay = 1;
     let lastCheckInDay = 0;
@@ -51,4 +51,15 @@ const generateBookingDataChunk = (start, stop) => {
 
     listingID++;
   }
+
+  await Bookings
+  .bulkCreate(bookings)
+  .then(async () => {
+    console.log('Bookings chunk complete!');
+    await BookingDates
+      .bulkCreate(bookedDates)
+      .then(result => console.log('Booked dates chunk complete!'))
+      .catch(err => console.error('Error!', err));
+  })
+  .catch(err => console.error('Error!', err));
 };
