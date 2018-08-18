@@ -5,16 +5,21 @@ const errHandler = res => err => res.status(400).send(JSON.stringify(err));
 
 exports.retrieveBookedDates = (req, res) => {
   const listingID = req.params.listing;
-  
-  BookingDates
+
+  Bookings
     .findAll({
+      where: { listing_id: listingID },
       include: [{
-        model: Bookings,
-        where: { listing_id: listingID },
-        attributes: []
-      }]
+        model: BookingDates,
+        as: 'BookedDates',
+        attributes: ['date']
+      }],
+      attributes: []
     })
-    .then(successHandler(res))
+    .then(bookings => {
+      bookings = bookings.reduce((bookings, booking) => bookings.concat(...booking.BookedDates.map(date => date.date)), []);
+      res.status(200).send(JSON.stringify(bookings));
+    })
     .catch(errHandler(res));
 };
 
@@ -78,8 +83,7 @@ exports.updateBookng = (req, res) => {
     
     return res.status(400).send(errMsg);
   }
-
-  const listingID = req.params.listing;
+  
   const bookingID = req.body.bookingID;
   const dates = req.body.dates;
   const guests = req.body.guests;
