@@ -1,3 +1,3 @@
 #!/bin/bash
 cd /var/api
-npm start
+pm2 start server/index.js
