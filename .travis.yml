@@ -7,6 +7,7 @@ deploy:
   secret_access_key: &1
     secure: wTNrO5e2KLjtgmiiMx608cXCiRk3JpfHh4faUKjESPAwSf0ar0pk6/ZCA7PCuNIDLCYGnKz6zhDICNvUmtxTX/NW994NhS69J0C+q4afw/8t2CcWigyb0wzj9qQqFrND7/FkAx5B9PbndEg5IyVsqiV5rSQGk5tlVcuUUK2U98eqTcRAsYW0O6ybPAXpks5xUM/KodACUMyTAoFonU1Ftc23edjChSDCepFdM2ysfQIdo0ZWG93tauUx+7UiMKa7Pid6uD0+A6+B+WG28k7b1k4ynFQcq68O6LIscCE8jiYzaALGwTgLYlJqnPrmju59vr+XzBrwcZ0yX/emvokxjMs25HAjdNO5Vc6afwCC+zTlWKa6r+Xa5LuRRVBSAjqTJnoTOcH5CPV0iMb7qYdtbZ/fPyKxH/QOWXaQMb2dJXvSkaxEVKQLfVk8WupmVEoIzpKnm7JkUEL/MFFvVNb2q3ooBi5FsIqnXvf+k4fwqZHPmBksxnuAkqvjfnOqf2F0vWP2+P4OblgV5hNdCdf9Qso7Nm+7+Sv/KSDyIF7vDiMQoSkOSJxEDXmuoIZ7toWZpbxYM81bEu7RY9ptzW1ZgR0CFj1SYsmAlLizwlFsglf+E9T7KatFcCGylp3jNyagMgoLxkSSwkAfu/V6yMJvG31DAY6lB6+nVcZGD7fF3Sc=
   local_dir: dpl_cd_upload
+  region: us-west-1
   skip_cleanup: true
   on: &2
     repo: TowerofGiraffes/beachRNR-booking-service
