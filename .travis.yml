@@ -3,9 +3,8 @@ node_js:
 - '8'
 deploy:
   - provider: s3
-    access_key_id: AKIAJFB6JBUTUSC6AYAA
-    secret_access_key:
-      secure: "CUbMzaSQmZjd99yCxbCrsrEYske/Fopk7duBSMCd/sCw0Y14PqDOfPPXE8mWRjpICyFOqZQt+pUgUQTnhLTmbgdIpK64ZfMMSZYubog9GumiJ6bkL0ej9rmMVSzUxAHl2evY6HjlfuyeXRZvQPYkT6lKW90Vo2y7IrHtEOyqLAYxq4xoYKtJFFfFBdaPDiWC1ELHf3sEWY89GorgO8kzC7zPSE+4jA9DMFOUc/9ZXwP05IJ7kQV7IUPHCyPKSUHLLI6o/4l72MUCPXmpxr9k5ubbT8Q5yaq9E9J+iWSdElrxNQqUBYYr7N5rUVFxU4E31GvFWHPYThzJTO1sfuY4Cq/llbZO9VoY8GpPLqvxkx5qatMD3WcxrmcSBO8fN1MGMaN87eWVaR4zrxXatCLSs4BXde8enzS11WzEgAUb6QuIl6Lgmd2gAsTN/D+h72juxQNroGBxWqUJqQU5iFvUAzoHG4E4m1tcJwUutcpCGacEx6esskqJQ74thjZmy4H32QlysdWWBbDguyTB7hDZoEnxNXLXTjBTIwSKha1glQIjuPwFW7QaPmY0qcBapAkPYcRsbhhUwepgiZiwIB96Z4YKRCBGOn9EWjRjkFScO/ySmaXGGuTVJPb5uPmjh0eoJCtiEYug4X6yZLQ8Txk1ipVzPLxEmMQTczhm2y7ySFo="
+    access_key_id: $ACCESSKEYID
+    secret_access_key: "$SECRETACCESSKEY"
     local_dir: dpl_cd_upload
     region: us-west-1
     skip_cleanup: true
@@ -13,9 +12,8 @@ deploy:
       repo: TowerofGiraffes/beachRNR-booking-service
     bucket: booking-service-s3
   - provider: codedeploy
-    access_key_id: AKIAJFB6JBUTUSC6AYAA
-    secret_access_key:
-      secure: "CUbMzaSQmZjd99yCxbCrsrEYske/Fopk7duBSMCd/sCw0Y14PqDOfPPXE8mWRjpICyFOqZQt+pUgUQTnhLTmbgdIpK64ZfMMSZYubog9GumiJ6bkL0ej9rmMVSzUxAHl2evY6HjlfuyeXRZvQPYkT6lKW90Vo2y7IrHtEOyqLAYxq4xoYKtJFFfFBdaPDiWC1ELHf3sEWY89GorgO8kzC7zPSE+4jA9DMFOUc/9ZXwP05IJ7kQV7IUPHCyPKSUHLLI6o/4l72MUCPXmpxr9k5ubbT8Q5yaq9E9J+iWSdElrxNQqUBYYr7N5rUVFxU4E31GvFWHPYThzJTO1sfuY4Cq/llbZO9VoY8GpPLqvxkx5qatMD3WcxrmcSBO8fN1MGMaN87eWVaR4zrxXatCLSs4BXde8enzS11WzEgAUb6QuIl6Lgmd2gAsTN/D+h72juxQNroGBxWqUJqQU5iFvUAzoHG4E4m1tcJwUutcpCGacEx6esskqJQ74thjZmy4H32QlysdWWBbDguyTB7hDZoEnxNXLXTjBTIwSKha1glQIjuPwFW7QaPmY0qcBapAkPYcRsbhhUwepgiZiwIB96Z4YKRCBGOn9EWjRjkFScO/ySmaXGGuTVJPb5uPmjh0eoJCtiEYug4X6yZLQ8Txk1ipVzPLxEmMQTczhm2y7ySFo="
+    access_key_id: $ACCESSKEYID
+    secret_access_key: "$SECRETACCESSKEY"
     bucket: booking-service-s3
     key: latest.zip
     bundle_type: zip
