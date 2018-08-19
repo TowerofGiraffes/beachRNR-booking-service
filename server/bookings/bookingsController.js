@@ -1,4 +1,5 @@
 const { Bookings, BookingDates } = require('./Bookings');
+const moment = require('moment');
 
 const successHandler = res => result => res.status(200).send(JSON.stringify(result));
 const errHandler = res => err => res.status(400).send(JSON.stringify(err));
@@ -16,9 +17,10 @@ exports.retrieveBookedDates = (req, res) => {
       }],
       attributes: []
     })
-    .then(bookings => {
-      bookings = bookings.reduce((bookings, booking) => bookings.concat(...booking.BookedDates.map(date => date.date)), []);
-      res.status(200).send(JSON.stringify(bookings));
+    .then(bookingsResults => {
+      const bookingsObj = {};
+      bookingsResults.forEach(bookings => bookings.BookedDates.forEach(booking => bookingsObj[moment(booking.date).format('YYYYMMDD')] = 1));
+      res.status(200).send(JSON.stringify(bookingsObj));
     })
     .catch(errHandler(res));
 };
