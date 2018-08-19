@@ -19,6 +19,7 @@ deploy:
   bundle_type: zip
   application: Booking-Service
   deployment_group: Booking-Service-Group
+  region: us-west-1
   on: *2
 before_deploy:
   - zip -r latest *
