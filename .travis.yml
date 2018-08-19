@@ -4,8 +4,7 @@ node_js:
 deploy:
   - provider: s3
     access_key_id: "$ACCESSKEYID"
-    secret_access_key:
-      secure: PlQQrESlhB2vc1rrAlBH0r1mkxJvUX0ZuEIHjJ8Waa2CHxsbL2LofuyH0TUzP+CWqTOOmkW53NwjXD7bh9SuG3o12UYSjiO9uFcaxyj7kFhAUrrsqy3OFe6LRflONKoYqzx+giUZyrDeQabsvG1PE1IMKYCIAN3RgPifzmTMrjagYHIbFJ83AlKU8ChQXWDSCxSjpZ5XGG9rcmFWDcOYAesWWLH6gh2jljdTqlbpeVZ8OFOry2jGVwhpqnFUG7ZVmiZXAHgOx1WcqPWNqII4kCgKFoD6tpryUMWdTVdGL8y/g9uWG6U3Qr9ko3uG9RxY2W902TDpLqWgh5s77PoOp2o/LrLh+HAKO+4Y1ljhLY9YWmAhSL6ueo4LWaSomi0HlUZnYN6VnDvbGI+dd70HIILmdW8w6jhrOV92UdQRG7R7n4JKENJ/JEK+82Ovt2EhH51pTEC6mS1g1gUCBE37gwvBy5MEIi02uf9xFIoEG8R6qQSaHAkj3gnO66YKlZ6nGImg+hdO0LSGaKeXojJMS1l7vRiZKJkPBIapJJuRuW5oaMbLcCsAXRZ61BYn/FNRuDZwnRzT55xdi5jT+OeX1JyNupOQpOuKC1eCBOpE8qT0Rwx8DlVFQGmKutpiIi3txt9id31wo3R3dIO5eL2nEE2YTCkPBorzq1UC9khrUmg=
+    secret_access_key: "$SECRETACCESSKEY"
     local_dir: dpl_cd_upload
     region: us-west-1
     skip_cleanup: true
@@ -14,8 +13,7 @@ deploy:
     bucket: booking-service-s3
   - provider: codedeploy
     access_key_id: "$ACCESSKEYID"
-    secret_access_key:
-      secure: PlQQrESlhB2vc1rrAlBH0r1mkxJvUX0ZuEIHjJ8Waa2CHxsbL2LofuyH0TUzP+CWqTOOmkW53NwjXD7bh9SuG3o12UYSjiO9uFcaxyj7kFhAUrrsqy3OFe6LRflONKoYqzx+giUZyrDeQabsvG1PE1IMKYCIAN3RgPifzmTMrjagYHIbFJ83AlKU8ChQXWDSCxSjpZ5XGG9rcmFWDcOYAesWWLH6gh2jljdTqlbpeVZ8OFOry2jGVwhpqnFUG7ZVmiZXAHgOx1WcqPWNqII4kCgKFoD6tpryUMWdTVdGL8y/g9uWG6U3Qr9ko3uG9RxY2W902TDpLqWgh5s77PoOp2o/LrLh+HAKO+4Y1ljhLY9YWmAhSL6ueo4LWaSomi0HlUZnYN6VnDvbGI+dd70HIILmdW8w6jhrOV92UdQRG7R7n4JKENJ/JEK+82Ovt2EhH51pTEC6mS1g1gUCBE37gwvBy5MEIi02uf9xFIoEG8R6qQSaHAkj3gnO66YKlZ6nGImg+hdO0LSGaKeXojJMS1l7vRiZKJkPBIapJJuRuW5oaMbLcCsAXRZ61BYn/FNRuDZwnRzT55xdi5jT+OeX1JyNupOQpOuKC1eCBOpE8qT0Rwx8DlVFQGmKutpiIi3txt9id31wo3R3dIO5eL2nEE2YTCkPBorzq1UC9khrUmg=
+    secret_access_key: "$SECRETACCESSKEY"
     bucket: booking-service-s3
     key: latest.zip
     bundle_type: zip
