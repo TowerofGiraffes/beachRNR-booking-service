@@ -2,27 +2,26 @@ language: node_js
 node_js:
 - '8'
 deploy:
-- provider: s3
-  access_key_id: $ACCESSKEYID
-  secret_access_key: &1
-    secure: wTNrO5e2KLjtgmiiMx608cXCiRk3JpfHh4faUKjESPAwSf0ar0pk6/ZCA7PCuNIDLCYGnKz6zhDICNvUmtxTX/NW994NhS69J0C+q4afw/8t2CcWigyb0wzj9qQqFrND7/FkAx5B9PbndEg5IyVsqiV5rSQGk5tlVcuUUK2U98eqTcRAsYW0O6ybPAXpks5xUM/KodACUMyTAoFonU1Ftc23edjChSDCepFdM2ysfQIdo0ZWG93tauUx+7UiMKa7Pid6uD0+A6+B+WG28k7b1k4ynFQcq68O6LIscCE8jiYzaALGwTgLYlJqnPrmju59vr+XzBrwcZ0yX/emvokxjMs25HAjdNO5Vc6afwCC+zTlWKa6r+Xa5LuRRVBSAjqTJnoTOcH5CPV0iMb7qYdtbZ/fPyKxH/QOWXaQMb2dJXvSkaxEVKQLfVk8WupmVEoIzpKnm7JkUEL/MFFvVNb2q3ooBi5FsIqnXvf+k4fwqZHPmBksxnuAkqvjfnOqf2F0vWP2+P4OblgV5hNdCdf9Qso7Nm+7+Sv/KSDyIF7vDiMQoSkOSJxEDXmuoIZ7toWZpbxYM81bEu7RY9ptzW1ZgR0CFj1SYsmAlLizwlFsglf+E9T7KatFcCGylp3jNyagMgoLxkSSwkAfu/V6yMJvG31DAY6lB6+nVcZGD7fF3Sc=
-  local_dir: dpl_cd_upload
-  region: us-west-1
-  skip_cleanup: true
-  on: &2
-    repo: TowerofGiraffes/beachRNR-booking-service
-  bucket: booking-service-s3
-- provider: codedeploy
-  access_key_id: $ACCESSKEYID
-  secret_access_key: *1
-  bucket: booking-service-s3
-  key: latest.zip
-  bundle_type: zip
-  application: Booking-Service
-  deployment_group: Booking-Service-Group
-  region: us-west-1
-  on: *2
+  matrix:
+  - provider: s3
+    local_dir: dpl_cd_upload
+    region: us-west-1
+    skip_cleanup: true
+    on: &2
+      repo: TowerofGiraffes/beachRNR-booking-service
+    bucket: booking-service-s3
+  - provider: codedeploy
+    bucket: booking-service-s3
+    key: latest.zip
+    bundle_type: zip
+    application: Booking-Service
+    deployment_group: Booking-Service-Group
+    region: us-west-1
+    on: *2
+  access_key_id: "$ACCESSKEYID"
+  secret_access_key:
+    secure: iIVSou9TYzybsywNCjxeuSVrT+tToqlpc7qDx0qfl6e2Cml1HEASfI2Axyo819tbyqsYU7j0Kx/DLo3M0JZj4Af5H77b718EIugK9lrgsgzLu8Y/jrQpVLycE7o8RSH7Kw9A6DlBLowAsQpjcmyWTENkxekBfhw9Jmm+X40w/H3/hPWlA6d2x/FxQFvqSZC1MFngLsfLBEyGXO9Yyr9drFP3w6pjFr5Tv/zLKdDr12EV69FuuPJJRMGzaN6wqIAyAcze1v0Xev33mQKCNoHCni/EyYsK9/zEpUPY8oEC7MfTBRDWgd3vnmx+DjIVuiEhxBy/IyjqkJoJf+WgX6MDIXbIp5LC7oRs2cf+xNQgXUeuYR1P2sPK1t8/UAVamljk1HyVI4QQddCYvdLOVZaMVSAwh0rwh5+Qbr/r1KtoZyL01rUBH0Ja96WhZ9ueAz4sgQySNm3MeoeBId2yz39/UueJ5ogYxV3kW/Hf5o+y9f0MgmB59+Zr+KsFuLEsq9xB8BOQRLMfLsK0WrAA23CcNO8Qmqzv4rFg5MepDnexSEYQXhCvtGpatLitKKL/1NqPJGhoF5MbKqgEZDVNwyzJxML+V/2WTPhrM2bZakmV04C/U0QQRfgRwW7/D6WIeuMQb+qZNlnDyhZzdYL+2EKWKoB14JMEONLiXVa5GB+IEFk=
 before_deploy:
-  - zip -r latest *
-  - mkdir -p dpl_cd_upload
-  - mv latest.zip dpl_cd_upload/latest.zip
+- zip -r latest *
+- mkdir -p dpl_cd_upload
+- mv latest.zip dpl_cd_upload/latest.zip
