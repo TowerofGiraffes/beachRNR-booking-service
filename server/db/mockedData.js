@@ -18,7 +18,7 @@ const generateBookingDataChunk = async (start, stop) => {
     let firstCheckInDay = 1;
     let lastCheckInDay = 0;
 
-    for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < 12; j++) {
       const adultGuests = getRandomIntInclusive(1, 5);
       const childGuests = getRandomIntInclusive(0, 3);
       const infantGuests = getRandomIntInclusive(0, 2);
@@ -35,7 +35,7 @@ const generateBookingDataChunk = async (start, stop) => {
 
       firstCheckInDay = lastCheckInDay + 1;
       lastCheckInDay += 30;
-      let checkOut = getRandomIntInclusive(2, 10);
+      let checkOut = getRandomIntInclusive(2, 7);
       const checkIn = getRandomIntInclusive(firstCheckInDay , lastCheckInDay - checkOut);
       checkOut += checkIn;
 
@@ -64,7 +64,7 @@ const generateBookingDataChunk = async (start, stop) => {
 };
 
 exports.generateData = async (req, res) => {
-  forceSync();
+  await forceSync();
   const chunks = req.params.chunks;
   listingID = 2912000;
   bookingID = 1;
