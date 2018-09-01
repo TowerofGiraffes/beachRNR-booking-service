@@ -43,11 +43,21 @@ exports.book = (req, res) => {
   }
 
   const listingID = req.params.listing;
-  const dates = req.body.dates;
+  const dates = [];
   const guests = req.body.guests;
 
+  const startDate = moment(req.body.dates.startDate);
+  const endDate = moment(req.body.dates.endDate);
+  const stayLength = endDate.diff(startDate, 'd') + 1;
+
+  startDate.subtract(1, 'd');
+  for (let i = 0; i < stayLength; i++) {
+    const date = startDate.add(1, 'd').toISOString();
+    dates.push(date);
+  }
+
   const nightlyPrice = 100; // TODO: make API call to inventory service for nightly price and calculate
-  const bookedPrice = nightlyPrice * (dates.length - 1) * (guests.adults + guests.children);
+  const bookedPrice = nightlyPrice * (stayLength) * (guests.adults + guests.children);
 
   Bookings
     .create({
